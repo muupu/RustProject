@@ -109,10 +109,10 @@ fn main() {
     //assert_eq!(*s.r, 10);// // 这个语句，让s的生命期扩展到这里。导致s的生命期超过了，其引用的S生命期‘a
 
     // 5.3 共享与修改
-    let v = vec![4, 8, 19 ,27, 34, 10];
-    let r = &v;
-    let aside = v;// cannot move out of `v` because it is borrowed
-    r[0];
+    // let v = vec![4, 8, 19 ,27, 34, 10];
+    // let r = &v;
+    // let aside = v;// cannot move out of `v` because it is borrowed
+    // r[0];
     // let mut wave = Vec::new();
     // let head = vec![0.0, 1.0];
 
