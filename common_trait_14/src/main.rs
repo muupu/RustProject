@@ -16,7 +16,7 @@ enum Language {
 
 pub trait MyFrom<T> {
     // anonymous parameters are removed in the 2018 edition (see RFC 1685)
-    // fn myfrom(T) -> Self;  // ^ expected one of `:`, `@`, or `|`
+    // fn myfrom(T) -> Self;  // 编译报错  ^ expected one of `:`, `@`, or `|`
     fn myfrom(_: T) -> Self; 
 }
 
@@ -24,13 +24,16 @@ pub trait MyInto<T> {
     fn myinto(self) -> T;
 }
 
+
 impl<T, U> MyInto<U> for T where U: MyFrom<T>  {
     
+    // T类型 转换成 U类型
     fn myinto(self) -> U {
         U::myfrom(self)
     }
 }
 
+// 为String类型实现 MyFrom<&str> trait，==》 自动实现 impl<&str, String> MyInto<String> for &str
 impl MyFrom<&str> for String {
     fn myfrom(s: &str) -> Self {
         String::from(s)
