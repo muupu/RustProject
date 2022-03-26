@@ -1,5 +1,5 @@
 
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Default)]
 struct Developer {
     name: String,
     age: u8,
@@ -12,6 +12,13 @@ enum Language {
     TypeScript,
     Elixir,
     Haskell
+}
+
+// 为Language类型实现默认值
+impl Default for Language {
+    fn default() -> Self {
+        Language::Rust
+    }
 }
 
 pub trait MyFrom<T> {
@@ -53,6 +60,9 @@ fn main() {
     println!("dev: {:?}, addr of dev name: {:p}", dev, dev.name.as_str());
     println!("dev1: {:?}, addr of dev1 name: {:p}", dev1, dev1.name.as_str()); 
 
+    let dev3 = Developer::default();
+    println!("dev3: {:?}", dev3);
+
 
     let s = String::from("hello world!");
     println!("{}", s);
@@ -64,5 +74,7 @@ fn main() {
     // let s2 = "hello world222!".myinto(); // consider giving `s2` a type
     let s2: String = "hello world222!".myinto();
     println!("{}", s2);
+
+    
     
 }
